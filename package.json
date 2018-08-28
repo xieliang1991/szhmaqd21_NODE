@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/xieliang1991/szhmaqd21_NODE/issues"
   },
-  "homepage": "https://github.com/xieliang1991/szhmaqd21_NODE#readme"
+  "homepage": "https://github.com/xieliang1991/szhmaqd21_NODE#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
