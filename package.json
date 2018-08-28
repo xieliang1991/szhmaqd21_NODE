@@ -1,0 +1,20 @@
+{
+  "name": "szhmaqd21_NODE",
+  "version": "1.0.0",
+  "description": "用mongobd数据库实现登陆注册",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xieliang1991/szhmaqd21_NODE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xieliang1991/szhmaqd21_NODE/issues"
+  },
+  "homepage": "https://github.com/xieliang1991/szhmaqd21_NODE#readme"
+}
