@@ -46,22 +46,34 @@
         //1.获取到用户输入的信息
         const username = $("#usernameId").val()
         //!@#ZZZ-_-加盐技术，这样做就算别人抓包也破解不了；注册&登录保持一致
-		//多端保持同样的盐
-        const password = md5($("#passwordId").val()+"!@#ZZZ-_-")
-    //console.log(username);
+        //多端保持同样的盐
+        const password = md5($("#passwordId").val() + "!@#ZZZ-_-")
+        //console.log(username);
         //2.发送请求给服务器
+        if (username == '') {
+            alert('请输入账号')
+            return
+        }
+
+        if ($('#passwordId').val() == '') {
+            alert('请输入密码')
+            return
+        }
+
         $.post("/account/register", {
-            username:username,
-            password:password
+            username: username,
+            password: password
         }, function (result) {
             //如果result的状态不等于0
-            if(result.status!==0){
+            if (result.status !== 0) {
                 alert(result.message)
-            }else{
+            } else {
                 //跳转到登陆页面
-                window.location.href='/account/login'
+                window.location.href = '/account/login'
             }
         });
+
+
     }
 </script>
 

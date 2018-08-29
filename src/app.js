@@ -6,7 +6,8 @@ const session = require('express-session')//第三方包，服务端session保�
 //2:创建应用
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 600000 }}))
+app.use(session({ secret: 'keyboard cat',resave: true,
+saveUninitialized: false, cookie: { maxAge: 600000 }}))
 //3:集成路由
 const accountRouter = require(path.join(__dirname,'routers/accountRouter.js'));
 const studentManagerRouter = require(path.join(__dirname,"./routers/studentmanagerRouter.js"))

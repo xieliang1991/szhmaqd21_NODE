@@ -1,10 +1,12 @@
 const path = require("path");
+//连接数据库的第三方包
 const MongoClient = require("mongodb").MongoClient;
+//生成验证码的第三方包
 const captchapng = require("captchapng");
-// Connection URL
+//数据库路径
 const url = "mongodb://localhost:27017";
 
-// Database Name
+//数据库名
 const dbName = "szhmqd21";
 /**
  * 最终处理，返回登录页面给浏览器
@@ -103,7 +105,6 @@ exports.login = (req, res) => {
   if (req.body.vcode != req.session.vcode) {
     result.status = 1;
     result.message = "验证码不正确";
-
     res.json(result);
     return;
   }
@@ -116,7 +117,7 @@ exports.login = (req, res) => {
       // 获取db对象
       const db = client.db(dbName);
 
-      // 拿着要操作的集合
+      //拿到要操作的集合
       const collection = db.collection("accountInfo");
 
       collection.findOne(
@@ -128,7 +129,6 @@ exports.login = (req, res) => {
             result.status = 2;
             result.message = "用户名或密码错误";
           }
-
           res.json(result);
         }
       );
