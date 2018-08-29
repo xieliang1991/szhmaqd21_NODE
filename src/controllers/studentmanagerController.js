@@ -11,6 +11,8 @@ const dbName = "szhmqd21";
 
 //最终处理，返回获取到学生列表页面
 exports.getStudentListPage = (req, res) => {
+    const keyword = req.query.keyword || '';
+    //console.log(keyword)
     MongoClient.connect(
         url, {
             useNewUrlParser: true
@@ -22,7 +24,7 @@ exports.getStudentListPage = (req, res) => {
             //拿到要操作的集合
             const collection = db.collection("studentInfo");
             //去数据库查询
-            collection.find({}).toArray((err, docs) => {
+            collection.find({name:{$regex:keyword}}).toArray((err, docs) => {
                 //关闭数据库连接
                 client.close()
                 /**
@@ -32,7 +34,8 @@ exports.getStudentListPage = (req, res) => {
                  */
                 //console.log(docs)
                 xtpl.renderFile(path.join(__dirname,'../statics/views/list.html'),{
-                    students:docs
+                    students:docs,
+                    keyword
                 },function(error,content){
                     //返回给浏览器请求的list页面
                     res.send(content)
