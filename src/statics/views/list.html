@@ -54,5 +54,13 @@
     function search(){
         window.location.href=`/studentmanager/list?keyword=${$('#studentNameId').val()}`
     }
+
+    var user = window.sessionStorage.getItem('user');
+    //console.log(user)
+    $('#user').html("欢迎【"+user+"】登录&nbsp;<a href=javascript:logout() style=color:red;font-size: 18px; class=navbar-link>退出</a>")
+    $('.list-group a').click(function(){
+        //console.log(1);
+        $(this).addClass('active').siblings().removeClass('active');
+    })
 </script>
 {{/block}}
