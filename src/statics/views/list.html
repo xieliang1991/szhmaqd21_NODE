@@ -32,16 +32,17 @@
                 </tr>
             </thead>
             <tbody>
-                {{#each(students)}}   
+                {{#each(students)}}
                 <tr>
                     <td>{{this.name}}</td>
                     <td>{{this.age}}</td>
                     <td>{{this.sex}}</td>
                     <td>{{this.phone}}</td>
                     <td>
-                        <a href="#" class="btn btn-success">编辑</a> |
+                        <!-- 通过params的的方式传参数过去/studentmanager/edit/{{this._id}} -->
+                        <a href="/studentmanager/edit/{{this._id}}" class="btn btn-success">编辑</a> |
 
-                        <input type="button" class="btn btn-danger" value="删除">
+                        <input type="button" class="btn btn-danger" value="删除" onclick="deleteStudent('{{this._id}}')">
                     </td>
                 </tr>
                 {{/each}}
@@ -51,16 +52,15 @@
 </div>
 <script>
     //点击查找发送请求
-    function search(){
-        window.location.href=`/studentmanager/list?keyword=${$('#studentNameId').val()}`
+    function search() {
+        window.location.href = `/studentmanager/list?keyword=${$('#studentNameId').val()}`
     }
 
-    var user = window.sessionStorage.getItem('user');
-    //console.log(user)
-    $('#user').html("欢迎【"+user+"】登录&nbsp;<a href=javascript:logout() style=color:red;font-size: 18px; class=navbar-link>退出</a>")
-    $('.list-group a').click(function(){
-        //console.log(1);
-        $(this).addClass('active').siblings().removeClass('active');
-    })
+    //点击删除事件
+    function deleteStudent(_id) {
+        if (confirm('你确定需要删除吗?')) {
+            window.location.href = `/studentmanager/delete/${_id}`
+        }
+    }
 </script>
 {{/block}}

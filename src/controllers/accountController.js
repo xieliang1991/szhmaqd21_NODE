@@ -101,8 +101,22 @@
     if (doc == null) {
       result.status = 2;
       result.message = "用户名或密码错误";
+    }else{
+      //登陆成功，把账号保存到session中
+      req.session.username=req.body.username
     }
 
     res.json(result);
   })
 };
+
+/**
+  * 最终处理，登出处理
+  */
+ exports.logout=(req,res)=>{
+   //清空session中的值
+   req.session.username = null
+
+   //跳转回到登陆界面
+   res.send(`<script>window.location.href='/account/login'</script>`)
+ }
